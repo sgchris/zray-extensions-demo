@@ -1,0 +1,53 @@
+<style>
+#clean_html_panel h1 {
+	font-size: 20px;
+	margin: 0 20px 20px 20px;
+}
+#clean_html_panel strong {
+	font-weight: bold;
+}
+#clean_html_panel #data ul {
+	margin: 20px;
+}
+#clean_html_panel span.status-active {
+	color: green;
+}
+#clean_html_panel span.status-inactive {
+	color: red;
+}
+</style>
+<div id="clean_html_panel">
+	<h1>Clean Html</h1>
+	<div id="data"></div>
+</div>
+
+<script type="text/javascript">
+(function() {
+	zray.registerDataHandler(
+		'MyWp', // extension name
+		'clean_html', // panel name
+		function(extensionData, requestData){
+			if (extensionData && extensionData.length > 0) {
+				extensionData.forEach(function(row) {
+					var newUl = document.createElement('ul');
+					
+					var newLi = document.createElement('li');
+					newLi.innerHTML = 'Name: <strong>' + row.name + '</strong>';
+					newUl.appendChild(newLi);
+					
+					newLi = document.createElement('li');
+					newLi.textContent = 'Version: ' + row.version;
+					newUl.appendChild(newLi);
+					
+					newLi = document.createElement('li');
+					newLi.innerHTML = 'status: <span class="status-' + row.active.toLowerCase() + '">' + row.active + '</span>';
+					newUl.appendChild(newLi);
+					
+					document.getElementById('data').appendChild(newUl);
+				});
+				
+			}
+		}
+	);
+})();
+</script>

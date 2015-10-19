@@ -1,0 +1,36 @@
+<?php
+// Define the table HTML
+$tableParams = array(
+    'tableId' 	=> 'simple-table-container-id',
+    'tableWidth' => '4', // optional (1 to 4, 1-narrow, 3-wide)
+);
+
+// create HTML for the table
+echo $this->zrayTable($tableParams);
+?>
+<script>
+(function() {
+	// create the storage
+	var storage = zray.getStorage('simple_table_storage');
+
+	// create the main table and bind it to the storage and HTML element
+	var maintable = zray.createTable(storage, jQuery('#<?php echo $tableParams['tableId']; ?>'));
+
+	// create columns descriptors for each column you wish to display
+	maintable.setColumns([{
+		label: 'Name',
+		propertyName: 'name'
+	}, {
+		label: 'Version',
+		propertyName: 'name'
+	}, {
+		label: 'Active?',
+		propertyName: 'active'
+	}]);
+
+	// insert the data into the storage
+	zray.registerDataHandler('MyWp', 'simple_table', function(extensionData, requestData) {
+		storage.setData(extensionData);
+	});
+})();
+</script>
