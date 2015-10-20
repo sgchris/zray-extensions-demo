@@ -25,8 +25,8 @@ class Module extends \ZRay\ZRayModule {
 					'menuTitle' => 'Search & Paging',
 					'panelTitle' => 'Search & Paging',
 					
-					'searchId' => 'table_with_seach_and_paging_search_id',
-					'pagerId' => 'table_with_seach_and_paging_pager_id',
+					'searchId' => 'table_with_search_and_paging_search_id',
+					'pagerId' => 'table_with_search_and_paging_pager_id',
 				),
 				'summary_table' => array(
 					'display' => true,
